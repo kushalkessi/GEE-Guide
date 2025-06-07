@@ -1,0 +1,31 @@
+/* .vitepress/theme/custom.css */
+
+:root {
+  --vp-c-brand-1: #646cff;
+  --vp-c-brand-2: #747bff;
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(
+    120deg,
+    #bb28ff 40%,
+    #41d1ff 
+  );
+
+  --vp-home-hero-image-background-image: linear-gradient(
+    -45deg,
+    #fe34f4 30%,
+    #4664eb 50%
+  );
+  --vp-home-hero-image-filter: blur(40px);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --vp-home-hero-image-filter: blur(50px);
+  }
+}
+
+@media (min-width: 960px) {
+  :root {
+    --vp-home-hero-image-filter: blur(60px);
+  }
+}

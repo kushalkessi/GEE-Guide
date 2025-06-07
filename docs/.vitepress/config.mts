@@ -2,27 +2,106 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "gee",
-  description: "e-book",
+  title: "GEE Guide",
+  // base: '/GEE/',
+  lang: 'en-US',
+  description: "This is a E learning pltform for Google Earth Engine (GEE)",
+
+  head: [
+    ['link', { rel: 'icon', type: 'image/png', href: '/images/apn.png' }] // ✅ Correct position
+  ],
   themeConfig: {
+    logo: { src: '/images/earth-engine-logo.png'},
     // https://vitepress.dev/reference/default-theme-config
+
+    search: {
+      provider: 'algolia',
+      options: {
+        appId: '8J64VVRP8K',
+        apiKey: '52f578a92b88ad6abde815aae2b0ad7c',
+        indexName: 'vitepress'
+      }
+    },
+
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: 'Content', link: '/content/introduction' },
+      { text: 'Website', link: 'https://antarikchya.org.np/' }
+
     ],
 
     sidebar: [
       {
-        text: 'Examples',
+        text: 'GEE',
+        collapsed: true,
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'Introduction', link: '/content/introduction' },
+          { text: 'Getting Started', link: '/content/getting_started' },
+          { text: 'Working With Satellite Data', link: '/content/working_with_satellite_data' },
+          { text: 'Cloud Masking', link: '/content/cloud_masking' },
+          { text: 'Calculating Indices', link: '/content/calculating_indices' },
+          { text: 'Analysis and Mapping', link: '/content/analysis_and_mapping' },
+          { text: 'Supervised Classification', link: '/content/supervised_classification' },
+          { text: 'Change Detection', link: '/content/change_detection' },
+          { text: 'Earth Engine App', link: '/content/earth_engine_app' },
+          { text: 'UI Elements', link: '/content/ui_elements' },
         ]
-      }
+      },
+
+      {
+        text: 'GEE Basic',
+        collapsed: true,
+        items: [
+          { text: 'Basic Coding in GEE', link: '/content/basic/basic_js' },
+          { text: 'Earth Engine Objects', link: '/content/basic/earth_engine_object' }, 
+          { text: 'Feature Collection', link: '/content/basic/feature_collection' }, 
+          { text: 'Image Collection', link: '/content/basic/image_collection' }, 
+          { text: 'Composite & Clip Image', link: '/content/basic/composite_image_&_clip' }, 
+          { text: 'Import and Export', link: '/content/basic/import_export' }, 
+        ]
+      }, 
+
+      {
+        text: 'GEE Intermidiate',
+        collapsed: true,
+        items: [
+          { text: 'Working With Satellite Data', link: '/content/working_with_satellite_data' },
+          { text: 'Cloud Masking', link: '/content/cloud_masking' },
+          { text: 'Calculating Indices', link: '/content/calculating_indices' },
+          { text: 'Analysis and Mapping', link: '/content/analysis_and_mapping' },
+          { text: 'Supervised Classification', link: '/content/supervised_classification' },
+          { text: 'Change Detection', link: '/content/change_detection' },
+          { text: 'Earth Engine App', link: '/content/earth_engine_app' },
+          { text: 'UI Elements', link: '/content/ui_elements' },
+        ]
+      },
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-    ]
+      { icon: 'github', link: 'https://github.com/kushalkessi'},
+      { icon: 'linkedin', link: 'https://github.com/kushalkessi'},
+      { icon: 'facebook', link: 'https://github.com/kushalkessi'},
+      { icon: 'instagram', link: 'https://github.com/kushalkessi'},
+      { icon: 'x', link: 'https://github.com/kushalkessi'}
+    ], 
+
+    editLink: {
+      pattern: 'https://github.com/kushalkessi',
+      text: 'Edit this page on GitHub'
+    },
+    
+    outline: [2, 3], // shows h2 and h3 in TOC
+
+
+    // contributors: true, // Enables contributor list
+    // lastUpdated: true,  // Enables last updated timestamp
+    // lastUpdatedText: "Last Updated", // Custom text for last updated field
+
+
+    footer: {
+      message: 'GEE User Guide',
+      copyright: `Copyright © ${new Date().getFullYear()} Antarikchya`
+    }
+
   }
 })

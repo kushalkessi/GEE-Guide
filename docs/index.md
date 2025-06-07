@@ -3,23 +3,21 @@
 layout: home
 
 hero:
-  name: "gee"
-  text: "e-book"
-  tagline: My great project tagline
+  name: "Google Earth Engine"
+  text: "User Guide"
+  tagline: Google Earth Engine is a free, cloud-based platform that allows anyone to explore, analyze and visualize geospatial data of the Earth without needing advanced technical skills.
+  image: /images/training1.png
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
-    - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: Learn GEE -->
+      link: /content/introduction
 
 features:
-  - title: Feature A
+  - title: Beginner Friendly
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
   - title: Feature B
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
   - title: Feature C
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
----
 
+---
