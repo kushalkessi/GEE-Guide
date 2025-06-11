@@ -12,24 +12,17 @@ hero:
       text: Learn GEE -->
       link: /content/introduction
 
-features:
-  - title: Beginner Friendly
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
---- 
+features: 
+  - title: 📍Beginner Friendly
+    details: Learn step-by-step, even if you have no prior coding or GIS experience. Concepts are explained clearly and intuitively.
+  - title: 🌍 Real-world Projects
+    details: Apply your knowledge through hands-on projects based on real environmental and disaster scenarios, making learning both engaging and impactful.
+  - title: 🧠 Hands-on Coding Examples
+    details: Practice with ready-to-use JavaScript code in the Earth Engine Code Editor and understand how each function contributes to analysis.
+---
 
+> This eBook is your complete guide to **working confidently with Google Earth Engine (GEE)** — starting from the fundamentals and moving into real-world applications. Whether you're a student researcher, or GIS enthusiast, this resource offers a structured and practical approach to understanding geospatial analysis using satellite data.
 
-
-> This eBook is your complete learning guide to mastering Google Earth Engine.
-
-- 📍 Beginner to Advanced
-- 🌍 Real-world Projects
-- 🛰️ Remote Sensing Concepts
-- 🧠 Hands-on Coding Examples
-
-::: tip Ready to start?
+::: tip Ready to start learning GEE?
 Go to [Introduction](/content/introduction)
 :::

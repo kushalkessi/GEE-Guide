@@ -5,7 +5,7 @@ export default defineConfig({
   title: "GEE Guide",
   // base: '/GEE/',
   lang: 'en-US',
-  description: "This is a E learning pltform for Google Earth Engine (GEE)",
+  description: "An e-learning platform for learning Google Earth Engine (GEE) with hands-on examples and real-world projects.",
 
   head: [
     ['link', { rel: 'icon', type: 'image/png', href: '/images/apn.png' }] // ✅ Correct position
