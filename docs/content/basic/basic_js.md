@@ -2,6 +2,22 @@
 
 # Google Earth Engine Basic 
 
+## Training Youtube Video
+
+<iframe width="100%" height="400" 
+src="https://www.youtube.com/embed/sUf2PtEZris" 
+title="YouTube video player" frameborder="0" 
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+allowfullscreen></iframe>
+
+## Demo Recorded Video
+
+<video width="100%" height="400" controls controlsList="nodownload">
+  <source src="/videos/Test.mp4" type="video/mp4">
+  <track src="/videos/captions.vtt" kind="subtitles" srclang="en" label="English" default>
+  Your browser does not support the video tag.
+</video>
+
 ## Basic Javascript Programming
 This script introduces the basic Javascript syntax **Variables (Number/String), List, Dictionary, Function**which covers the programming concepts you need to learn when using Earth Engine. 
 
@@ -74,7 +90,6 @@ print(elevation);
 ```
 
 ---
-
 #### 4. **List (Array)**
 An ordered collection of multiple values stored in one variable, accessible by position (index starts at 0).
 ```js
@@ -84,7 +99,6 @@ print(fruits[2]);
 ```
 
 * `fruits[2]` gets the **third fruit** (count starts at 0).
-
 **Output:**
 ```txt
 ['Apple', 'Banana', 'Mango', 'Orange']
@@ -94,7 +108,6 @@ Mango
 Lists are used to store multiple values such as bands of satellite images, coordinates of points, or dates for time series analysis. For example, you can keep a list of image IDs to process them one by one or manage multiple threshold values for classification.
 
 ---
-
 #### 8. **Dictionary (Object)**
 A collection of key-value pairs where each key is unique and maps to a value. Like a mini database record.
 ```js
@@ -107,7 +120,6 @@ print(mountainInfo);
 print(mountainInfo.height);
 
 ```
-
 * Access `.height` to get: `8848.46`
 
 **Output:**
@@ -144,5 +156,4 @@ Functions help automate repetitive tasks like calculating indices (e.g., NDVI), 
 ---
 <a href="https://code.earthengine.google.com/5166c6689099cc389be0f08153c36771?noload=true" target="_blank" style="display: inline-block; padding: 3px 6px; background-color: #0078d4; color: white; text-decoration: none; border-radius: 9px; font-weight: bold;">
   Open in Code Editor 🔗
-</a>
-
+</a>  

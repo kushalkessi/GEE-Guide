@@ -8,9 +8,16 @@ hero:
   tagline: Google Earth Engine is a free, cloud-based platform that allows anyone to explore, analyze and visualize geospatial data of the Earth without needing advanced technical skills.
   image: /images/training1.png
   actions:
-    - theme: brand
-      text: Learn GEE -->
-      link: /content/introduction
+  - theme: brand
+    text: What is GEE?
+    link: /content/introduction
+  - theme: alt
+    text: Quickstart
+    link: /content/getting_started
+  # - theme: alt
+  #   text: Basic
+  #   link: /content/basic/basic_js
+
 
 features: 
   - title: 📍Beginner Friendly
