@@ -19,5 +19,17 @@ features:
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
   - title: Feature C
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+--- 
 
----
+
+
+> This eBook is your complete learning guide to mastering Google Earth Engine.
+
+- 📍 Beginner to Advanced
+- 🌍 Real-world Projects
+- 🛰️ Remote Sensing Concepts
+- 🧠 Hands-on Coding Examples
+
+::: tip Ready to start?
+Go to [Introduction](/content/introduction)
+:::

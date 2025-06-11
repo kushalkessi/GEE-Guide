@@ -1,13 +1,15 @@
 <script setup>
 import { useData } from 'vitepress'
+import DefaultTheme from 'vitepress/theme'
+import SupportUs from './components/SupportUs.vue'
+
 const { page } = useData()
 </script>
 
-<!-- <template>
-  <h1>Custom Layout!</h1>
-
-  <div v-if="page.isNotFound">
-    Custom 404 page!
-  </div>
-  <Content v-else />
-</template> -->
+<template>
+  <DefaultTheme.Layout>
+    <template #nav-bar-content-after>
+      <SupportUs />
+    </template>
+  </DefaultTheme.Layout>
+</template>

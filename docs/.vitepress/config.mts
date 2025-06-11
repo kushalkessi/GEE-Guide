@@ -10,6 +10,7 @@ export default defineConfig({
   head: [
     ['link', { rel: 'icon', type: 'image/png', href: '/images/apn.png' }] // ✅ Correct position
   ],
+
   themeConfig: {
     logo: { src: '/images/earth-engine-logo.png'},
     // https://vitepress.dev/reference/default-theme-config
@@ -24,10 +25,9 @@ export default defineConfig({
     },
 
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Content', link: '/content/introduction' },
-      { text: 'Website', link: 'https://antarikchya.org.np/' }
-
+    { text: 'Home', link: '/' },
+    { text: 'Content', link: '/content/introduction' },
+    { text: 'Antarikchya', link: 'https://antarikchya.org.np/' },
     ],
 
     sidebar: [
@@ -81,14 +81,12 @@ export default defineConfig({
       pattern: 'https://github.com/kushalkessi',
       text: 'Edit this page on GitHub'
     },
-    
+
+     lastUpdated: {
+      text: 'Last updated on',
+    },
+
     outline: [2, 3], // shows h2 and h3 in TOC
-
-
-    // contributors: true, // Enables contributor list
-    // lastUpdated: true,  // Enables last updated timestamp
-    // lastUpdatedText: "Last Updated", // Custom text for last updated field
-
 
     footer: {
       message: 'GEE User Guide',

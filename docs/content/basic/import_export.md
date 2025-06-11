@@ -17,7 +17,7 @@ In GEE, importing means bringing external or GEE assets into your script to use 
 * d. Set an **Asset ID**, e.g., `users/yourUsername/Municipal_Boundary`
 * e. Click **Upload**
 
-<img src="../../images/basic//import.png">
+<img src="../../images/basic/import.png">
 
 **Step 3. Wait for upload to finish**
 * Shows progress and upload success in `Tasks Tab`
@@ -37,53 +37,65 @@ var KMC = ee.FeatureCollection("users/yourUsername/Municipal_Boundary");
 ---
 
 ### **Export**
-
-Exports are used to **download or save data** (images, tables, videos) to your **Google Drive**, **Cloud Storage**, or **Earth Engine Assets**.
+Google Earth Engine (GEE) allows users to **export images, tables, videos, and charts** to external storage such as **Google Drive** `toDrive`, **Google Cloud Storage** `toCloudStorage` or **Earth Engine assets** `toAsset` for further use , storing or sharing.
+> When you specify the `region` parameter during export (e.g., `region: geometry`), Earth Engine **automatically clips** the image to that area **during the export process**. 
 
 ---
 
-### 1. Export an Image to Google Drive
 
+### 1. Load the area of imtrest that you have uploaded in Assets
 ```js
+  // Change to your AOI
+  var aoi = ee.FeatureCollection("projects/kessikushal/assets/Nepal_Boundary/Municipal_Boundary");
+```
+
+### 2. Load, filter, composite and Sentinel 2 Imagery
+```js
+  // Load Sentinel-2 Surface Reflectance Image Collection
+  var s2 = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
+          .filterDate('2025-01-01', '2025-01-30')
+          .filterBounds(aoi)
+          .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))
+          .median();
+
+  // Print the all available images id and properties
+  print(s2);
+
+  // Center map on Nepal and add image to map
+  Map.centerObject(aoi, 11);
+  Map.addLayer(s2.clip(aoi), { bands: ['B4', 'B3', 'B2'], min: 0, max: 3000 }, 'S2 KMC');
+```
+
+### 3. Export Sentinel 2 Images of your Interest
+Once you’ve created a composite or selected an image, you may want to export it for offline analysis, visualization or creating Map. 
+```js
+// Export to Google Drive (automatic region clipping)
 Export.image.toDrive({
-  image: clippedComposite,      // Image to export
-  description: 'Nepal_RGB_Composite',  // Task name
-  folder: 'GEE_exports',        // Drive folder name (optional)
-  fileNamePrefix: 'RGB_Nepal_May2025', // File name
-  region: nepal,                // Export region
-  scale: 10,                    // Spatial resolution in meters
-  maxPixels: 1e13               // Limit to avoid errors
+  image: s2,                  // Image to export
+  description: 'Sentinel_2',  // Task name
+  folder: 'GEE',              // Drive folder name (optional)
+  fileNamePrefix: 'S2_KMC',   // File name
+  region: aoi,                // Export region
+  scale: 10,                  // Spatial resolution in meters
+  maxPixels: 1e13             // Limit to avoid errors
 });
 ```
+After running the export code in Google Earth Engine, some tasks may appear as **unsubmitted** or **ready to run** in the Tasks tab. You need to:
+  1. Open the **Tasks** tab in the GEE Code Editor.
+  2. Check the task name and destination folder carefully.
+  3. If needed, rename the task or folder for clarity.
+  4. Then click **Run** to start the export process.
+<img src="../../images/basic/export.png">
+Similarly, you can export your images, tables, and videos to Earth Engine Assets or Google Cloud Storage for easy access and further analysis.
 
----
-
-### 2. Export a FeatureCollection (e.g., shapefile) to Drive
+#### Note:
+> You can extract only specific bands from an image using the .select() function. This is useful when exporting only necessary bands like RGB or specific indices.
 ```js
-Export.table.toDrive({
-  collection: nepal,                // FeatureCollection to export
-  description: 'Nepal_Boundary_Export',
-  fileFormat: 'SHP'                 // Can be CSV, GeoJSON, KML, SHP
-});
+// Select only RGB bands (True Color)
+var selectedBands = s2Composite.select(['B4', 'B3', 'B2']);
 ```
 
 ---
-
-### 3. Export Image to GEE Asset (for long-term storage)
-```js
-Export.image.toAsset({
-  image: clippedComposite,
-  description: 'Nepal_Composite_Asset',
-  assetId: 'users/yourUsername/Nepal_Composite_2025',
-  region: nepal,
-  scale: 10,
-  maxPixels: 1e13
-});
-```
-
----
-
-
-<a href="https://code.earthengine.google.com/e16dfb7329bcfd4e58c75c6d93298f65?noload=true" target="_blank" style="display: inline-block; padding: 3px 6px; background-color: #0078d4; color: white; text-decoration: none; border-radius: 9px; font-weight: bold;">
+<a href="https://code.earthengine.google.com/59a4afa21c0ec593411278e96057edf6?noload=true" target="_blank" style="display: inline-block; padding: 3px 6px; background-color: #0078d4; color: white; text-decoration: none; border-radius: 9px; font-weight: bold;">
   Open in Code Editor 🔗
 </a>

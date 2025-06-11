@@ -79,6 +79,28 @@ Map.addLayer(clippedComposite, { bands: ['B4', 'B3', 'B2'], min: 0, max: 3000 },
 Map.addLayer(clippedComposite, { bands: ['B8', 'B4', 'B3'], min: 0, max: 5000 }, 'Sentinel-2 False Composite (Clipped)');
 ```
 
+
+### ⚠️ Note:
+
+> ❗ **Clipping is not mandatory before Prosessing, Exporting image or while using Reducers.**
+
+* When you **use the `region` parameter** (e.g., during export or reducer), Earth Engine **automatically limits** the operation to that region.
+* So, **clipping before processing is optional**, and mainly used for **visual display** or when:
+
+  * You want to **restrict further processing** only within that region.
+  * You want to **reduce computation time** if working with large datasets.
+
+---
+
+### ✅ Best Practice
+
+* Use `.clip()` **at the end**, mainly for display.
+```js
+Map.addLayer(s2Composite.clip(nepal), { bands: ['B4', 'B3', 'B2'], min: 0, max: 3000 }, 'Clipped Composite');
+```
+* Rely on `region` or `geometry` in `Export` and `Reducers` like to automatically focus on your desired area.
+
+
 ---
 <a href="https://code.earthengine.google.com/e16dfb7329bcfd4e58c75c6d93298f65?noload=true" target="_blank" style="display: inline-block; padding: 3px 6px; background-color: #0078d4; color: white; text-decoration: none; border-radius: 9px; font-weight: bold;">
   Open in Code Editor 🔗

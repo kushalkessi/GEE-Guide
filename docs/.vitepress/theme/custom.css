@@ -1,5 +1,4 @@
 /* .vitepress/theme/custom.css */
-
 :root {
   --vp-c-brand-1: #646cff;
   --vp-c-brand-2: #747bff;
@@ -28,4 +27,35 @@
   :root {
     --vp-home-hero-image-filter: blur(60px);
   }
+}
+
+
+/* config css */
+/* === NAV BAR ITEMS HOVER === */
+.VPNavBarMenuLink:hover {
+  font-weight: bold;
+  color: #ec0505  !important; 
+  text-decoration: underline;
+  transition: all 0.3s ease;
+}
+
+/* === SITE TITLE HOVER (GEE Guide) === */
+.VPNavBarTitle .title:hover {
+  color: #06aee0;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+/* === SEARCH BAR BORDER ON FOCUS === */
+.DocSearch-Button:hover,
+.DocSearch-Button:focus {
+  /* border-color: #df1515; */
+  box-shadow: 0 0 0 2px #ff0000;
+  transition: all 0.3s ease;
+}
+
+/* FOOTER BACKGROUND AND HOVER  */
+.VPFooter:hover {
+  background-color: #d6e4df;
+  color: #0075eb;
 }

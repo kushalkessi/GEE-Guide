@@ -20,7 +20,7 @@ print('Welcome to GEE Course');
 This prints a message to the **Console tab** in the Earth Engine Code Editor.
 
 **Output:**
-```output
+```txt
 Welcome to GEE Course
 ```
 
@@ -53,7 +53,7 @@ print(country);
 * `country` stores this text.
 
 **Output:**
-```output
+```txt
 Nepal
 ```
 
@@ -69,7 +69,7 @@ print(elevation);
 * `elevation` stores the **height of Mount Everest**.
 
 **Output:**
-```output
+```txt
 8848.86
 ```
 
@@ -86,7 +86,7 @@ print(fruits[2]);
 * `fruits[2]` gets the **third fruit** (count starts at 0).
 
 **Output:**
-```output
+```txt
 ['Apple', 'Banana', 'Mango', 'Orange']
 Mango
 ```
@@ -111,7 +111,7 @@ print(mountainInfo.height);
 * Access `.height` to get: `8848.46`
 
 **Output:**
-```output
+```txt
 Object (3 properties)
 8848.46
 ```
@@ -134,7 +134,7 @@ print(introduce('Hari'));
 * `introduce('Roman')` returns `My name is Roman`
 
 **Output:**
-```output
+```txt
 My name is Roman
 My name is Hari
 ```

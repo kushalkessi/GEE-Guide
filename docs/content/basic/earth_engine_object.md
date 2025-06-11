@@ -29,7 +29,7 @@ This defines a **server-side** number and string object using Earth Engine’s `
 
 **Output:**
 
-```output
+```txt
 8848.86
 Kathmandu
 ```
@@ -54,7 +54,7 @@ This is a **client-side** variable that exists only in your browser and uses nat
 
 **Output:**
 
-```output
+```txt
 8848.86
 Kathmandu
 ```
@@ -78,7 +78,7 @@ You can convert a **client-side** number and string to a **server-side** number 
 
 **Output:**
 
-```output
+```txt
 8848.86
 Kathmandu
 ```
@@ -105,7 +105,7 @@ This converts a **server-side** object to a **client-side** value using `.getInf
 
 **Output:**
 
-```output
+```txt
 Elevation (client-side): 8848.86
 Place (client-side): Kathmandu
 ```
@@ -139,7 +139,7 @@ This shows how to create and manipulate **server-side date objects** in Earth En
 
 **Output:**
 
-```output
+```txt
 Date (String): 2015-12-31T00:00:00
 Date from YMD: 2017-01-13T00:00:00
 Future Date (+1 year): 2016-12-31T00:00:00
@@ -164,8 +164,7 @@ print('Sequence List (gap of 4):', sequence);
 This creates a **server-side list** of numbers spaced by a defined step.
 
 **Output:**
-
-```output
+```txt
 [1, 5, 9, 13, 17]
 ```
 
@@ -189,8 +188,7 @@ print('Sequence List (gap of 4):', sequence);
 This creates a **server-side list** of numbers spaced by a defined step.
 
 **Output:**
-
-```output
+``` text
 [1, 5, 9, 13, 17]
 ```
 
