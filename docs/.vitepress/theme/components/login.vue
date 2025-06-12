@@ -6,7 +6,7 @@ import {
   onAuthStateChanged,
   updateProfile,
 } from "firebase/auth";
-import { auth } from "../../firebase";
+import { auth } from "../firebase";
 
 const user = ref(null);
 const showLogin = ref(true);
