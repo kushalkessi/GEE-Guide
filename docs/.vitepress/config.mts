@@ -70,11 +70,11 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/kushalkessi'},
-      { icon: 'linkedin', link: 'https://github.com/kushalkessi'},
-      { icon: 'facebook', link: 'https://github.com/kushalkessi'},
-      { icon: 'instagram', link: 'https://github.com/kushalkessi'},
-      { icon: 'x', link: 'https://github.com/kushalkessi'}
+      { icon: 'github', link: 'https://github.com/Antarikchya-Prathisthan-Nepal'},
+      { icon: 'linkedin', link: 'https://www.linkedin.com/company/antarikchya/'},
+      { icon: 'facebook', link: 'https://www.facebook.com/antarikchya'},
+      { icon: 'instagram', link: 'https://www.instagram.com/antarikchya/'},
+      { icon: 'x', link: 'https://x.com/antarikchya'}
     ], 
 
     editLink: {

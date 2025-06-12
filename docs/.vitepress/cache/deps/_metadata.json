@@ -1,31 +1,58 @@
 {
-  "hash": "dbd2db49",
+  "hash": "63b21d63",
   "configHash": "7d480e08",
-  "lockfileHash": "8ac7b4be",
-  "browserHash": "0417a599",
+  "lockfileHash": "7e6394a1",
+  "browserHash": "f0c3c619",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "6d18f2b0",
+      "fileHash": "3b27cc25",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
       "src": "../../../../node_modules/@vue/devtools-api/dist/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "ab1806dc",
+      "fileHash": "e2530206",
       "needsInterop": false
     },
     "vitepress > @vueuse/core": {
       "src": "../../../../node_modules/@vueuse/core/index.mjs",
       "file": "vitepress___@vueuse_core.js",
-      "fileHash": "0962408a",
+      "fileHash": "7de6a638",
+      "needsInterop": false
+    },
+    "cropperjs": {
+      "src": "../../../../node_modules/cropperjs/dist/cropper.esm.raw.js",
+      "file": "cropperjs.js",
+      "fileHash": "5d393c8d",
+      "needsInterop": false
+    },
+    "firebase/auth": {
+      "src": "../../../../node_modules/firebase/auth/dist/esm/index.esm.js",
+      "file": "firebase_auth.js",
+      "fileHash": "ab9bfeaf",
+      "needsInterop": false
+    },
+    "firebase/app": {
+      "src": "../../../../node_modules/firebase/app/dist/esm/index.esm.js",
+      "file": "firebase_app.js",
+      "fileHash": "82c90688",
+      "needsInterop": false
+    },
+    "firebase/storage": {
+      "src": "../../../../node_modules/firebase/storage/dist/esm/index.esm.js",
+      "file": "firebase_storage.js",
+      "fileHash": "b98fb4aa",
       "needsInterop": false
     }
   },
   "chunks": {
     "chunk-FA4MWVOB": {
       "file": "chunk-FA4MWVOB.js"
+    },
+    "chunk-YU4NXDZ2": {
+      "file": "chunk-YU4NXDZ2.js"
     }
   }
 }
