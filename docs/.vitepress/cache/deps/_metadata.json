@@ -1,49 +1,31 @@
 {
-  "hash": "63b21d63",
+  "hash": "71ee8a3b",
   "configHash": "7d480e08",
-  "lockfileHash": "7e6394a1",
-  "browserHash": "f0c3c619",
+  "lockfileHash": "2981d610",
+  "browserHash": "7389af98",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "3b27cc25",
+      "fileHash": "3ccfb85e",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
       "src": "../../../../node_modules/@vue/devtools-api/dist/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "e2530206",
+      "fileHash": "b38cd397",
       "needsInterop": false
     },
     "vitepress > @vueuse/core": {
       "src": "../../../../node_modules/@vueuse/core/index.mjs",
       "file": "vitepress___@vueuse_core.js",
-      "fileHash": "7de6a638",
+      "fileHash": "d37fd4cd",
       "needsInterop": false
     },
-    "cropperjs": {
-      "src": "../../../../node_modules/cropperjs/dist/cropper.esm.raw.js",
-      "file": "cropperjs.js",
-      "fileHash": "5d393c8d",
-      "needsInterop": false
-    },
-    "firebase/auth": {
-      "src": "../../../../node_modules/firebase/auth/dist/esm/index.esm.js",
-      "file": "firebase_auth.js",
-      "fileHash": "ab9bfeaf",
-      "needsInterop": false
-    },
-    "firebase/app": {
-      "src": "../../../../node_modules/firebase/app/dist/esm/index.esm.js",
-      "file": "firebase_app.js",
-      "fileHash": "82c90688",
-      "needsInterop": false
-    },
-    "firebase/storage": {
-      "src": "../../../../node_modules/firebase/storage/dist/esm/index.esm.js",
-      "file": "firebase_storage.js",
-      "fileHash": "b98fb4aa",
+    "@supabase/supabase-js": {
+      "src": "../../../../node_modules/@supabase/supabase-js/dist/module/index.js",
+      "file": "@supabase_supabase-js.js",
+      "fileHash": "f3bd9bcd",
       "needsInterop": false
     }
   },
@@ -51,8 +33,14 @@
     "chunk-FA4MWVOB": {
       "file": "chunk-FA4MWVOB.js"
     },
-    "chunk-YU4NXDZ2": {
-      "file": "chunk-YU4NXDZ2.js"
+    "browser-4LLAETQC": {
+      "file": "browser-4LLAETQC.js"
+    },
+    "chunk-G7KV7Q2M": {
+      "file": "chunk-G7KV7Q2M.js"
+    },
+    "chunk-V4OQ3NZ2": {
+      "file": "chunk-V4OQ3NZ2.js"
     }
   }
 }

@@ -2,7 +2,7 @@
 import { useData } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import SupportUs from './components/SupportUs.vue'
-import Login from './components/login.vue'  // ⬅️ Import your login component
+import Login from './components/login.vue'
 
 const { page } = useData()
 </script>
@@ -14,6 +14,7 @@ const { page } = useData()
     <template #nav-bar-content-after>
       <SupportUs />
       <Login /> <!-- ⬅️ Your Login component -->
+
     </template>
 
   </DefaultTheme.Layout>

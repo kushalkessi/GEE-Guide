@@ -1,6 +1,6 @@
 ## ImageCollection
 In Google Earth Engine, an **ImageCollection** is a set of satellite images or raster datasets grouped together based on certain criteria such as sensor type, date range, or spatial coverage. It is used to work with large stacks of imagery. Each image in the collection has its own metadata (like date, cloud cover, etc.) and bands (like Red, Green,, Blue, NIR). You can filter ImageCollections by date, region or metadata, and apply functions like median, mean or cloud masking over time. ImageCollections are fundamental for time-series analysis, change detection, land cover classification, and environmental monitoring tasks.
-The `ee.ImageCollection()` syntax is used to load a ImageCollection.
+> The `ee.ImageCollection()` syntax is used to load a ImageCollection.
 
 ---
 
@@ -37,7 +37,7 @@ Now filter the previously loaded collection by **date range** (e.g., May 2025).
 ```js
 // Define the date range
 var startDate = '2025-01-01';
-var endDate = '2025-01-30';
+var endDate = '2025-02-28';
 
 // Apply date filter
 s2 = s2.filterDate(startDate, endDate);
@@ -91,9 +91,10 @@ Map.addLayer(s2, visParams, 'Sentinel-2 RGB');
 ---
 
 **Output:**
-A True color (RGB) Sentinel-2 image over Nepal with less than 10% cloud cover from Jaunary 2025.
+A True color (RGB) Sentinel-2 image over Nepal with less than 10% cloud cover from Jaunary & February 2025.
+<img src="../../images/basic/image-collection.png">
 
 ---
-<a href="https://code.earthengine.google.com/29ba331d59732bced67eeb09bf09d198?noload=true" target="_blank" style="display: inline-block; padding: 3px 6px; background-color: #0078d4; color: white; text-decoration: none; border-radius: 9px; font-weight: bold;">
+<a href="https://code.earthengine.google.com/595bcb5a292a7e8fb0036753045b42c4?noload=true" target="_blank" style="display: inline-block; padding: 3px 6px; background-color: #0078d4; color: white; text-decoration: none; border-radius: 9px; font-weight: bold;">
   Open in Code Editor 🔗
 </a>

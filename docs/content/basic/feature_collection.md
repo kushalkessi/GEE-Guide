@@ -1,6 +1,6 @@
 ## Feature Collection
 In Google Earth Engine, a **FeatureCollection** is a structured group of geographic features, where each feature includes a geometry (such as a point, line, or polygon) and a set of associated attributes or properties (like ID, name, land cover type, etc.). It is commonly used to handle vector data, such as administrative boundaries, sample locations, road networks or training data for classification. FeatureCollections can be manually created using tools like the geometry drawing tools in the Code Editor or by uploading external shapefiles or GeoJSON files. They are essential for tasks like masking, filtering, sampling, or training machine learning models using spatial data.
-The `ee.FeatureCollection()` syntax is used to create or load a FeatureCollection.
+> The `ee.FeatureCollection()` syntax is used to create or load a FeatureCollection.
 
 
 ## **Load GAUL Administrative Boundaries**
@@ -73,6 +73,7 @@ print('Nepal Geometry:', nepalGeom);
 
 **Output:**
 Displays all level 0 administrative boundaries of Nepal on the map.
+<img src="../../images/basic/feature-collection.png">
 
 <a href="https://code.earthengine.google.com/2640a26b90929e7f74557e27820242d8?noload=true" target="_blank" style="display: inline-block; padding: 3px 6px; background-color: #0078d4; color: white; text-decoration: none; border-radius: 9px; font-weight: bold;">
   Open in Code Editor 🔗

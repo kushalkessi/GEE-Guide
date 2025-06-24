@@ -57,7 +57,16 @@ The code editor has a map view, scripts , docs, Assets, console, Task and inspec
 
 
 ### 3. Viewing Your First Map in GEE
-Load your first satellite images in GEE visualize them with true color composites.<br>
+In this section, you will load and visualize Sentinel-2 imagery using true color composites (Red, Green, Blue) in Google Earth Engine.<br>
+
+#### 📌 Why Sentinel-2?
+
+* Offers **higher spatial resolution (10 m)** compared to Landsat (30 m).
+* Ideal for **detailed analysis** in urban, agricultural, and environmental studies.
+* More **frequent image capture (5-day revisit time)**.<br>
+**[Sentinel 2 Data Catalog](https://developers.google.com/earth-engine/datasets/catalog/sentinel-2)**
+
+---
 <a href="https://code.earthengine.google.com" target="_blank" style="display: inline-block; padding: 3px 6px; background-color: #34a853; color: white; text-decoration: none; border-radius: 9px; font-weight: bold;">
   Earth Engine Code Editor 
 </a>

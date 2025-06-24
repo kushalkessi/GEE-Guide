@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import mathjax3 from 'markdown-it-mathjax3'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -6,6 +7,12 @@ export default defineConfig({
   // base: '/GEE/',
   lang: 'en-US',
   description: "An e-learning platform for learning Google Earth Engine (GEE) with hands-on examples and real-world projects.",
+
+  markdown: {
+    config: (md) => {
+      md.use(mathjax3)
+    }
+  },
 
   head: [
     ['link', { rel: 'icon', type: 'image/png', href: '/images/apn.png' }] // ✅ Correct position
@@ -32,11 +39,11 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: 'GEE',
+        text: 'Overview',
         collapsed: true,
         items: [
-          { text: 'Introduction', link: '/content/introduction' },
-          { text: 'Getting Started', link: '/content/getting_started' }
+          { text: 'Introduction to GEE', link: '/content/introduction' },
+          { text: 'Getting Started with GEE', link: '/content/getting_started' }
         ]
       },
 
@@ -57,11 +64,11 @@ export default defineConfig({
         text: 'GEE Intermidiate',
         collapsed: true,
         items: [
-          { text: 'Working With Satellite Data', link: '/content/intermidiate/working_with_satellite_data' },
-          { text: 'Cloud Masking', link: '/content/intermidiate/cloud_masking' },
           { text: 'Calculating Indices', link: '/content/intermidiate/calculating_indices' },
-          { text: 'Analysis and Mapping', link: '/content/intermidiate/analysis_and_mapping' },
-          { text: 'Supervised Classification', link: '/content/intermidiate/supervised_classification' },
+          { text: 'Cloud Masking', link: '/content/intermidiate/cloud_masking' },
+          { text: 'Reducers', link: '/content/intermidiate/reducer' },
+          { text: 'Charts', link: '/content/intermidiate/chart' },
+          { text: 'Image Classification', link: '/content/intermidiate/image_classification.md' },
           { text: 'Change Detection', link: '/content/intermidiate/change_detection' },
           { text: 'Earth Engine App', link: '/content/intermidiate/earth_engine_app' },
           { text: 'UI Elements', link: '/content/intermidiate/ui_elements' },

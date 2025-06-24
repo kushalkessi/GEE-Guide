@@ -1,5 +1,24 @@
 ## Composite
 A composite is a single image created by combining multiple satellite images using a statistical reducer such as median(), mean(), or min()
+<div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+  <!-- Median Image -->
+  <div style="text-align: center;">
+    <img src="../../images/basic/median.png" style="width: 300px;">
+    <div><strong>Fig: Median Composite</strong></div>
+  </div>
+
+ <!-- VS with Down Arrow -->
+  <div style="text-align: center; font-size: 24px; font-weight: bold; color: red;">
+    VS<br>
+    <span style="font-size: 35px;">&#8596;</span> <!-- Unicode Down Arrow -->
+  </div>
+
+  <!-- Mosaic Image -->
+  <div style="text-align: center;">
+    <img src="../../images/basic/mosaic.png" style="width: 300px;">
+    <div><strong>Fig: Mosaic Composite</strong></div>
+  </div>
+</div>
 
 ## Mosaic
 A mosaic is an image formed by layering multiple images on top of each other, where the pixel values come from the first valid (non-null) image in the stack for each pixel location.
@@ -18,7 +37,7 @@ var nepal = ee.FeatureCollection('FAO/GAUL/2015/level0')
 ```js
 // Load Sentinel-2 Surface Reflectance Image Collection
 var s2 = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
-        .filterDate('2025-01-01', '2025-01-30')
+        .filterDate('2025-01-01', '2025-02-28')
         .filterBounds(nepal)
         .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10));
 
@@ -62,10 +81,11 @@ var s2Mosaic = s2.mosaic();
 
 ### Step 4: Clip Composite to Nepal Boundary
 Crop the composite image so it only shows Nepal.
-* `.clip()` Crop the Image
+* `.clip()` Crop the Image to your area of Region.
 ```js
 // Clip composite image to Nepal boundary
-var clippedComposite = s2Composite.clip(nepal);
+var clippeds2Median = s2Median.clip(nepal);
+var clippeds2Mosaic = s2Mosaic.clip(nepal);
 ```
 
 ---
@@ -75,14 +95,15 @@ var clippedComposite = s2Composite.clip(nepal);
 ```js
 // Center map on Nepal and add image to map
 Map.centerObject(nepal, 7);
-Map.addLayer(clippedComposite, { bands: ['B4', 'B3', 'B2'], min: 0, max: 3000 }, 'Sentinel-2 RGB Composite (Clipped)');
-Map.addLayer(clippedComposite, { bands: ['B8', 'B4', 'B3'], min: 0, max: 5000 }, 'Sentinel-2 False Composite (Clipped)');
+Map.addLayer(clippeds2Median, { bands: ['B4', 'B3', 'B2'], min: 0, max: 3000 }, 'Sentinel-2 Median Composite (Clipped)');
+Map.addLayer(clippeds2Mosaic, { bands: ['B4', 'B3', 'B2'], min: 0, max: 3000 }, 'Sentinel-2 Mosaic Composite (Clipped)');
 ```
 
+**Output:** A true color (RGB) Sentinel-2 median and mosaic composite image over Nepal with less than 10% cloud cover from January to February 2025, clipped to the Nepal boundary.
 
 ### ⚠️ Note:
 
-> ❗ **Clipping is not mandatory before Prosessing, Exporting image or while using Reducers.**
+>❗ **Clipping is not mandatory before Prosessing, Exporting image or while using Reducers.**
 
 * When you **use the `region` parameter** (e.g., during export or reducer), Earth Engine **automatically limits** the operation to that region.
 * So, **clipping before processing is optional**, and mainly used for **visual display** or when:
@@ -102,6 +123,6 @@ Map.addLayer(s2Composite.clip(nepal), { bands: ['B4', 'B3', 'B2'], min: 0, max: 
 
 
 ---
-<a href="https://code.earthengine.google.com/e16dfb7329bcfd4e58c75c6d93298f65?noload=true" target="_blank" style="display: inline-block; padding: 3px 6px; background-color: #0078d4; color: white; text-decoration: none; border-radius: 9px; font-weight: bold;">
+<a href="https://code.earthengine.google.com/0fda3bedd703f5b8971bab196b84b317?noload=true" target="_blank" style="display: inline-block; padding: 3px 6px; background-color: #0078d4; color: white; text-decoration: none; border-radius: 9px; font-weight: bold;">
   Open in Code Editor 🔗
 </a>

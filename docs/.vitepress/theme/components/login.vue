@@ -1,12 +1,6 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount} from "vue";
-import {
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
-  updateProfile,
-} from "firebase/auth";
-import { auth } from "../firebase";
+import { ref, onMounted, onBeforeUnmount } from "vue";
+import { supabase } from "../supabase"; // Adjust path
 
 const user = ref(null);
 const showLogin = ref(true);
@@ -20,35 +14,54 @@ const errorMsg = ref("");
 const displayNameInput = ref("");
 const profileImageFile = ref(null);
 const profileImagePreview = ref("");
-const isUpdating = ref(false); // Loading state
+const isUpdating = ref(false);
 
-
-// Your existing login function unchanged
+// LOGIN
 const login = async () => {
   errorMsg.value = "";
   if (!email.value || !password.value) {
     errorMsg.value = "Please enter email and password.";
     return;
   }
-  try {
-    await signInWithEmailAndPassword(auth, email.value, password.value);
-    showLogin.value = false;
-    email.value = "";
-    password.value = "";
-  } catch (error) {
+
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email: email.value,
+    password: password.value,
+  });
+
+  if (error) {
     errorMsg.value = error.message;
+    return;
   }
+
+  // ✅ Set user
+  user.value = data.user;
+  showLogin.value = false;
+
+  // ✅ Set profile name and avatar
+  displayNameInput.value = user.value.user_metadata?.full_name || "";
+  profileImagePreview.value = user.value.user_metadata?.avatar_url || "";
+
+  // ✅ Clear login form
+  email.value = "";
+  password.value = "";
 };
 
-// New logout function
+
+
+// LOGOUT
 const logout = async () => {
-  showDropdown.value = false;
-  await signOut(auth);
-  showLogin.value = true;
+  await supabase.auth.signOut();
   user.value = null;
+  profileImagePreview.value = ""; // Clear the avatar
+  showLogin.value = true;
+  showDropdown.value = false;
+   profileImagePreview.value = ""; // Clear the avatar
+  
 };
 
-// File input change handler for profile photo
+
+// IMAGE PREVIEW
 const onFileChange = (e) => {
   const file = e.target.files[0];
   if (file) {
@@ -57,47 +70,71 @@ const onFileChange = (e) => {
   }
 };
 
-// Update profile function
+// updateProfileInfo function
 const updateProfileInfo = async () => {
-  const currentDisplayName = user.value.displayName || "";
-  const currentPhotoURL = user.value.photoURL || "";
+  const updates = {};
 
-  const newDisplayName = displayNameInput.value.trim();
-  const newPhotoURL = profileImagePreview.value;
+  const newName = displayNameInput.value.trim();
+  if (newName && newName !== user.value.user_metadata?.full_name) {
+    updates.full_name = newName;
+  }
 
-  // Check if any actual change is made
-  const isNameChanged = newDisplayName !== currentDisplayName;
-  const isPhotoChanged = newPhotoURL !== currentPhotoURL;
+  if (profileImageFile.value) {
+    const file = profileImageFile.value;
+    const filePath = `${user.value.id}/${file.name}`;
 
-  if (!isNameChanged && !isPhotoChanged) {
-    alert("No changes detected.");
+    const { error: uploadError } = await supabase.storage
+      .from("123")
+      .upload(filePath, file, { upsert: true });
+
+    if (uploadError) {
+      alert("Image upload failed: " + uploadError.message);
+      return;
+    }
+
+    const { data: { publicUrl } } = supabase.storage.from("123").getPublicUrl(filePath);
+
+    // Add timestamp to force refresh
+    const timestamp = new Date().getTime();
+    const cacheBustedUrl = `${publicUrl}?t=${timestamp}`;
+
+    updates.avatar_url = cacheBustedUrl;
+    profileImagePreview.value = cacheBustedUrl; // Update preview
+  }
+
+  if (Object.keys(updates).length === 0) {
+    alert("No changes made.");
     return;
   }
 
-  try {
-    let photoURL = currentPhotoURL;
+  isUpdating.value = true;
 
-    // For demo purposes; replace this with real upload logic if needed
-    if (isPhotoChanged) {
-      photoURL = newPhotoURL;
-    }
+  // Send the metadata in the `data` property
+  const { error } = await supabase.auth.updateUser({
+    data: updates
+  });
 
-    await updateProfile(auth.currentUser, {
-      displayName: newDisplayName || currentDisplayName,
-      photoURL,
-    });
+  if (error) {
+    alert("Update error: " + error.message);
+  } else {
+    // Fetch updated user and assign
+    const { data } = await supabase.auth.getUser();
+    user.value = data.user;
 
-    user.value = { ...auth.currentUser };
+    // Update input & preview from new user data
+    displayNameInput.value = user.value.user_metadata?.full_name || "";
+    profileImagePreview.value = user.value.user_metadata?.avatar_url || "";
 
     alert("Profile updated!");
     showUpdateForm.value = false;
     showDropdown.value = false;
-  } catch (err) {
-    alert("Error updating profile: " + err.message);
   }
+
+  isUpdating.value = false;
 };
 
-// Escape key handler
+
+// ESCAPE KEY HANDLER
 const handleEscape = (event) => {
   if (event.key === "Escape") {
     showDropdown.value = false;
@@ -105,29 +142,29 @@ const handleEscape = (event) => {
   }
 };
 
+onMounted(async () => {
+  const { data: { user: currentUser } } = await supabase.auth.getUser();
+  user.value = currentUser;
+  showLogin.value = !currentUser;
 
-// Watch auth state and set user info
-onMounted(() => {
-  onAuthStateChanged(auth, (currentUser) => {
-    user.value = currentUser;
-    showLogin.value = !currentUser;
+  if (currentUser) {
+    displayNameInput.value = currentUser.user_metadata?.full_name || "";
+    profileImagePreview.value = currentUser.user_metadata?.avatar_url || "";
+  }
 
-    if (currentUser) {
-      displayNameInput.value = currentUser.displayName || "";
-      profileImagePreview.value = currentUser.photoURL || "";
-    }
-  });
-    document.addEventListener("keydown", handleEscape);
+  document.addEventListener("keydown", handleEscape);
 });
+
+
 
 onBeforeUnmount(() => {
   document.removeEventListener("keydown", handleEscape);
-  if (profileImagePreview.value && profileImagePreview.value.startsWith('blob:')) {
+  if (profileImagePreview.value?.startsWith("blob:")) {
     URL.revokeObjectURL(profileImagePreview.value);
   }
 });
-
 </script>
+
 
 <template>
   <!-- Login Modal -->
@@ -189,14 +226,14 @@ onBeforeUnmount(() => {
         style="width:40px; height:40px; background-color:hsla(0,0,5,0); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-weight:bold; font-size:22px; cursor:pointer; box-shadow:0 4px 8px rgba(52,152,219,0.5); overflow:hidden;"
         title="User Profile"
     >
-        <img 
-        v-if="user?.photoURL" 
-        :src="user.photoURL" 
-        style="width:100%; height:100%; object-fit:cover;"
+       <img
+        v-if="profileImagePreview"
+        :src="profileImagePreview"
         alt="Profile"
-        >
+        class="w-8 h-8 rounded-full"
+/>
         <span v-else style="color: red;">
-        {{ (user?.displayName ? user.displayName.split(' ').map(n => n[0]).join('') : 'K').toUpperCase() }}
+        {{ (user?.user_metadata?.full_name ? user.user_metadata.full_name.split(' ').map(n => n[0]).join('') : 'K').toUpperCase() }}
         </span>
     </div>
 
@@ -207,7 +244,7 @@ onBeforeUnmount(() => {
 
     >
         <div style="padding:10px; border-bottom:1px solid #eee;">
-        <div style="text-decoration: underline; font-weight:850; margin-bottom:4px;">{{ user?.displayName || 'User' }}</div>
+        <div style="text-decoration: underline; font-weight:850; margin-bottom:4px;">{{ user?.user_metadata?.full_name || 'User' }}</div>
         <div style="font-size:12px; color:#7f8c8d;text-decoration: underline; font-style: italic;">{{ user?.email }}</div>
         </div>
 

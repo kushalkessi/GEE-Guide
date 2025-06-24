@@ -8,7 +8,9 @@
     "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.50.0",
     "cropperjs": "^2.0.0",
-    "firebase": "^11.9.1"
+    "firebase": "^11.9.1",
+    "markdown-it-mathjax3": "^4.3.2"
   }
 }
